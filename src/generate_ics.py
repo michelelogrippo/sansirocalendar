@@ -1,6 +1,6 @@
 import requests
 from icalendar import Calendar, Event
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 # URL dell'API EasyPark
@@ -17,14 +17,18 @@ calendar = Calendar()
 for item in data:
     try:
         event = Event()
-        event.add('summary', item.get("Title", "Evento EasyPark"))
+        event.add('summary', item.get("Description"))
 
-        start_str = item.get("StartDate")
-        end_str = item.get("EndDate")
+        start_time_str = item.get("Time")
+        event_date_str = item.get("IdParkings")[0].get("FromDate")[0:10]  # Prendi solo la parte della data
+        
+        # Converti la stringa in un oggetto datetime
+        start_str = event_date_str + " " + start_time_str
 
-        if start_str and end_str:
+
+        if start_str:
             start_dt = datetime.fromisoformat(start_str)
-            end_dt = datetime.fromisoformat(end_str)
+            end_dt = start_dt + timedelta(hours=2)
             event.add('dtstart', start_dt)
             event.add('dtend', end_dt)
             calendar.add_component(event)
