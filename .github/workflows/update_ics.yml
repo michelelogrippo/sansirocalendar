@@ -5,6 +5,11 @@ on:
     - cron: '0 6 * * *'  # Ogni giorno alle 6:00 UTC
   workflow_dispatch:     # Permette l'esecuzione manuale
 
+
+permissions:
+  contents: write        # Permesso minimo per fare commit nel repo
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
