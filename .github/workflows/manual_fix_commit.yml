@@ -1,0 +1,30 @@
+name: Manual fix with commit and pull rebase
+
+on:
+  workflow_dispatch:     # Permette l'esecuzione manuale
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script to generate ICS
+        run: python src/generate_ics.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -m "Aggiorna file ICS automatico"
+          git pull --rebase origin main
