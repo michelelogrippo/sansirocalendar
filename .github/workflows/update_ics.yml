@@ -30,4 +30,4 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add docs/sansirocalendar.ics
           git commit -m "Aggiorna file ICS automatico"
-          git push https://x-access-token:${{ secrets.SANSIROCALENDARPAT }}@github.com/michelelogrippo/sansirocalendar.git HEAD:main
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/michelelogrippo/sansirocalendar.git HEAD:main
