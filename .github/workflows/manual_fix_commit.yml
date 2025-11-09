@@ -26,5 +26,5 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git commit -m "Aggiorna file ICS automatico"
+          git commit -m "Aggiorna file ICS automatico" -a
           git pull --rebase origin main
