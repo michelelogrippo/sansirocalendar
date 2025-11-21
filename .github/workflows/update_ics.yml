@@ -34,5 +34,10 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add docs/sansirocalendar.ics
+          # Se non ci sono cambiamenti da committare, esci con successo e mostriamo un warning
+          if git diff --cached --quiet; then
+            echo "::warning::Nessuna modifica da committare. Il workflow termina senza errore."
+            exit 0
+          fi          
           git commit -m "Aggiorna file ICS automatico"
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/michelelogrippo/sansirocalendar.git HEAD:main
