@@ -2,7 +2,7 @@ name: Update ICS Calendar
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Ogni giorno alle 6:00 UTC
+    - cron: '0 6 */2 * *'  # Ogni giorno alle 6:00 UTC
   workflow_dispatch:     # Permette l'esecuzione manuale
 
 
