@@ -17,7 +17,8 @@ calendar = Calendar()
 for item in data:
     try:
         event = Event()
-        event.add('summary', item.get("Description"))
+        summary = item.get("Description") + " ("+ item.get("PlaceEventDescr") + ")"
+        event.add('summary', summary)
 
         start_time_str = item.get("Time")
         event_date_str = item.get("IdParkings")[0].get("FromDate")[0:10]  # Prendi solo la parte della data
